@@ -1,0 +1,62 @@
+---
+title: "index.Rmd"
+author: "Sanya Kejriwal"
+date: "08/07/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+``` {r, include=FALSE}
+source("analysis.R")
+```
+
+# Gun Violence
+
+## Summary Information
+In the year 2018, `r total_num_shootings` shootings occurred in the United States. There were `r total_lives_lost` lives lost and `r total_injuries` injuries in total. The states where the most shootings occurred were `r state_most_shootings[1]` and `r state_most_shootings[2]`. The city with the most shootings was `r city_most_shootings`. The link to the original source of the data can be found [here](http://www.shootingtracker.com/).
+
+## Summary Table
+
+```{r table, echo = FALSE}
+library(knitr)
+table <- state_summaries
+knitr::kable(
+  table,
+  "simple",
+  col.names = c('State', 'Total Killed', 'Total Injured', 'Total Effected'),
+  align = "lccc",
+)
+```
+
+#### Insights:
+- 186 People were either killed or injured in California in 2018 due to gun violence. This is the largest amount of people effected in a single state.
+- California also had the highest number of people who were killed, with 150 lives lost due to gun violence in 2018.
+- Out of all the states that experienced gun violence, Utah and Massachusetts had the fewest number of people who were effected at only 4 individuals.
+
+## Description of a Particular Incident
+On `r ps_date`, a shooting took place in `r ps_city` in `r ps_state`. During the shooting, `r ps_num_killed` students, teachers, and staff were killed, and `r ps_injuries` more were injured. This incident, later known as the Parkland School Shooting, horrified the entire United States and sparked a giant call for gun reform. In order to commemorate this loss, TIME Magazine published a collection of photos that can be found [here](https://time.com/parkland-high-school-shooting-vigil/).
+
+## Interactive Map
+This interactive map displays the location of each shooting in 2018. It showcases the density of shootings in different geographic areas across the United States. The size of each circle is dependent on the number of people who were killed in the shooting.
+
+`r shooting_map`
+
+#### Insights:
+- A  majority of shootings occurred in Southern states.
+- The shooting with the largest number of people killed occurred in Parkland, Florida. In this shooting, 17 people were killed and 17 more were injured.
+
+## A Plot
+#### Question:
+In each state, was the number of people injured or the number of people killed larger?
+
+`r killed_and_injured_bar_plot`
+
+#### Insights:
+- In every state that had a shooting with the exception of New Mexico, the number of people that were injured was higher than the number of people that were killed. 
+- The most people were killed in California and the most people were injured in Illinois.
+
+
+
